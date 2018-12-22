@@ -6,10 +6,10 @@ We felt it's quite hard to calculate all of our expenditure in the end of the mo
 But now we moved to technology side. This app is doing all the things like updating and listing the day to day purchase, overall purchase, individual contribution, rent allocation(only for incharge of the month) etc.
 
 Technologies used to create this project,
-- Front-end design: HTML5, CSS3, Bootstrap.
-- Scripting: PHP, Javascript, Jquery, Ajax.   
-- Database: MySQL.
-- Server: Apache.
+- Front-end design: HTML5, CSS3, Bootstrap
+- Scripting: PHP, Javascript, Jquery, Ajax  
+- Database: MySQL
+- Server: Apache
 
 Finally this site converted into an APK to access in android devices. 
 
