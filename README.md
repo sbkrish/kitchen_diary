@@ -9,7 +9,8 @@ Technologies used to create this project,
 - Scripting: PHP, Javascript, Jquery, Ajax.   
 - Database: MySQL.
 - Server: Apache.
-And finally this is converted into an APK. 
+
+Finally this site converted into an APK to access in android devices. 
 
 Thanks for reading this.
 
