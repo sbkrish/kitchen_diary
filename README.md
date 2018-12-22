@@ -1,1 +1,16 @@
 # kitchen_diary
+Hi everyone, this is the project i have developed to monitor our room and kitchen expenses.
+Currently we five utilizing this kitchen diary through app and website. In our earlier days we had used note books to write the daily expenses.
+We felt it's quite hard to calculate all of our expenditure in the end of the month. Since we missed or made errors in that.
+But now we moved to technology side. This app is doing all the things like updating and listing the day to day purchase, overall purchase, individual contribution, rent allocation(only for incharge of the month) etc.
+
+Technologies used to create this project, 
+For, front-end design: HTML5, CSS, Bootstrap.
+Scripting: PHP, Javascript, Jquery, Ajax. 
+Back-end: MySQL.
+Server: Apache.
+And finally this is converted into an APK. 
+
+Thanks for reading this.
+Regards,
+Balakrishnan S
