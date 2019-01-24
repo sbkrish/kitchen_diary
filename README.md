@@ -13,6 +13,9 @@ Technologies used to create this project,
 
 Finally this site converted into an APK to access in android devices. 
 
+[Click here] (http://www.mediafire.com/file/zl1b6nz11zjece3/Kitchen_Diary_000.apk/file) to download the APK file.
+
+
 Thanks for reading this.
 
 Regards,
