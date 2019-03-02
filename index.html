@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="refresh" content="3,url=home.php">
+		<meta name="author" content="sbkrish">
+		<meta name="description" content="Kitchen Diary gives freedom for room mates from regular note book entries of daily expenses and monthly rent calculation">
+		<title>Kitchen Diary welcome's you</title>
+		<link rel="stylesheet" href="css/font-awesome.min.css"/>
+		<link rel="shortcut icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+		<style type="text/css">
+		@font-face {
+			font-family: 'Saira Semi Condensed';
+			src: url(fonts/SairaSemiCondensed-Regular.ttf)
+		}
+		@font-face {
+			font-family: 'Josefin Slab';
+			src: url(fonts/JosefinSlab-Regular.ttf)
+		}
+		body {
+			background-color: #7d1a9b;
+			background-image: linear-gradient(to right, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 0%, rgba(69, 77, 91, 0.6) 00%);
+			overflow: hidden;
+		}
+		img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
+			display: none
+		}
+		img {
+			border: 0px solid white;
+			border-radius: 30px;
+			background-color: #eee;
+			padding: 3px;
+			width: 100px;
+			display: block;
+			margin: auto;
+			margin-top: 15%;
+			box-shadow: 0 0 3px white;
+		}
+		h1 {
+			text-align: center;
+			font-family: 'Saira Semi Condensed', sans-serif;
+			font-size: 30px;
+			color: white;
+			margin-top: 15px;
+			text-shadow: 1px 1px 1px black;
+		}
+		h2 {
+			color: #d6cee8;
+			text-align: center;
+			font-family: 'Josefin Slab', sans-serif;
+			font-size: 20px;
+			margin-top: 15px
+		}
+		p {
+			text-align: center;
+			color: grey;
+			margin-top: -10px;
+			font-size: 12px
+		}
+		hr {
+			border: 0;
+			width: 40%;
+			height: 2px;
+			background-image: linear-gradient(to right, rgba(108, 122, 137, 0), rgba(108, 122, 137, 0.75), rgba(108, 122, 137, 0));
+		}
+		p.version {
+			font-family: 'Josefin Slab', sans-serif;
+			font-size: 12px;
+			letter-spacing: 3px;
+			color: #d6cee8;
+			margin-top: 5px;
+		}
+		@media only screen and (max-width: 768px) {
+			img {
+				margin: auto;
+				margin-top: 50%;
+			}
+			hr {
+				height: 1px;
+				width: 100%;
+			}
+		}
+		</style>
+	</head>
+	<body>
+		<section class="banner">
+			<div class="banner-inner">
+				<img src="img/rooster.png">
+			</div>
+		</section>
+		<h1>KITCHEN DIARY</h1>
+		<hr>
+		<h2>Holiday Hungers</h2>
+		<p class="version">V2.0</p>
+		<script>
+		$(document).ready(function(){
+		$('body').find('img[src$="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]').remove();
+		});
+		</script>
+	</body>
+</html>
