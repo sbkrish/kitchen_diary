@@ -1,0 +1,6 @@
+if we are using gmail account to send mail via smtp,
+need to change the less secure app permission in gmail account. Otherwise request could be blocked by gmail even for a correct username and password.
+
+use this link to enable less secure apps
+------------------------------------------
+https://myaccount.google.com/lesssecureapps

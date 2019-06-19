@@ -6,6 +6,10 @@ if(!($user))
 {
 echo '<script> window.location.href="home.php?st"</script>';
 }
+include('database/db_connection.php');
+$verify_user_activation = mysqli_query($con, "SELECT `verified` FROM `user` WHERE `alias` = $user[0]");
+// echo "SELECT verified FROM `user` WHERE `alias` = '$user[0]'";
+$row = mysqli_fetch_assoc($verify_user_activation);
 ?>
 <!DOCTYPE html>
 <html>
@@ -104,7 +108,19 @@ echo '<script> window.location.href="home.php?st"</script>';
 			margin-right: 10em;
 			font-size: 12px;
 		}
-		@media only screen and (max-width: 768px) {
+		.btm-img {
+			display: none;
+		}
+		.not-activate {
+			color: #434343;
+			font-size: 16px;
+			line-height: 25px;
+		}
+		.fa-envelope {
+			font-size: 36px;
+			color: grey;
+		}
+		@media only screen and (max-width: 768px){
 			.form-wrapper {
 				margin-top: 20%;
 			}
@@ -149,7 +165,7 @@ echo '<script> window.location.href="home.php?st"</script>';
 			margin-right: 5px;
 			border: 0px solid grey;
 			border-radius: 2px;
-			padding: 6px;
+			padding: 5px;
 			color: #0A4F8C;
 			background-color: #c3c3c3;
 			cursor: pointer;
@@ -173,10 +189,12 @@ echo '<script> window.location.href="home.php?st"</script>';
 			background-color: grey;
     }
     	.btm-img {
+    		display: inline-block;
     		text-align: center;
     		margin: auto;
-    		margin-top: 18%;
-    		opacity: ;
+    		position: absolute;
+    		margin-top: 10%;
+    		opacity: 0.5;
     		background-color: transparent;
     		
     	}
@@ -187,7 +205,15 @@ echo '<script> window.location.href="home.php?st"</script>';
     	}
 		}
 
-
+		.field-icon {
+			display: none;
+  float: right;
+  margin-left: -30px;
+  margin-top: 15px;
+  position: absolute;
+  opacity: 0.6;
+  z-index: 2;
+}
 		
 
 		</style>
@@ -196,31 +222,36 @@ echo '<script> window.location.href="home.php?st"</script>';
 		<nav>
 			<ul>
 				<li><a href="home.php"><i class="fa fa-arrow-left"></i></a></li>
-				<li class="another-user"><a href="logout.php">Not me</a></li>
+				<li class="another-user"><a href="login.php">Not me</a></li>
 			</ul>
 		</nav>
+
 		<input type="hidden" id="current-user" value="<?php echo($user) ?>">
 		<div class="form-wrapper">
 			<div class="text-center">
+				<?php if($row['verified'] == 1) { ?>
 			<img src="img/1.png" class="user-image" id="1">
 			<img src="img/2.png" class="user-image" id="2">
 			<img src="img/3.png" class="user-image" id="3">
 			<img src="img/4.png" class="user-image" id="4">
 			<img src="img/5.png" class="user-image" id="5">
 		</div>
+		
 			<form action="password_exist.php" class="form">
 				<div class="form-group">
 					<label class="form-label" for="first">Enter Password</label>
-					<input id="first" class="form-input" type="password"  required="" />
-					<label class="forgot-password"><a  href="logout.php" style="text-decoration: none;">Forgot password?</a></label>
+					<input id="first" class="form-input" type="password"  required="" /><span toggle="#first" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+					<label class="forgot-password"><a  href="forgot-password.php" style="text-decoration: none;">Forgot password?</a></label>
 					<!-- <div class="btn-align"> -->
 					<button class="btn btn-md btn-success">SIGN IN</button>
 				<!-- </div> -->
 					<!--   <label><a  href="home.php" style="text-decoration: none;">Home</a></label> -->
 					
-				</div>
+				
 			
 		</form>
+		</div> <?php } else { 
+			echo "<p class='not-activate'> Your account is not yet verified. Please check your registered email for activation link. <p><i class='fa fa-envelope'></i></p>";} ?>
 		</div>
 		<div class="btm-img">
 			<img src="img/bg-img/2.png" id="btm-img">
@@ -244,6 +275,27 @@ $("img").hide();
 var value = document.getElementById("current-user").value;
 document.getElementById(value).style.display = "inline";
 document.getElementById("btm-img").style.display = "inline";
+
+$("input").focusin(function(){
+	$(".field-icon").show();
+	});
+$("input").focusout(function(){
+	// console.log($("#first").val());
+	if ($("#first").val() == "") {
+	$(".field-icon").css('display', 'none');
+	}
+	});
+$(".toggle-password").click(function() {
+// $(.field-icon).show();
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+});
+
 </script>
 </body>
 </html>

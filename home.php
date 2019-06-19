@@ -7,7 +7,7 @@ $user=implode($name);
 if(isset($_GET['st']))
 {
 $id=$_GET['st'];
-echo "<div id='$id'>Session Timed out</div>";
+// echo "<div id='$id'>Session Timed out</div>";
 }
 $review=mysqli_query($con, "SELECT Incharge FROM `incharge` ORDER BY id DESC LIMIT 1");
 $row=mysqli_fetch_assoc($review);

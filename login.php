@@ -6,9 +6,10 @@ $user=implode($name);
 if($user)
 {
 	include("./database/db_connection.php");
-	$sql=mysqli_query($con, "SELECT Password FROM user WHERE uname='$user'");
-		
-		if(mysqli_num_rows($sql)==1)
+	$sql=mysqli_query($con, "SELECT Password FROM user WHERE alias='$user'");
+		// echo mysqli_num_rows($sql);
+	$query = mysqli_fetch_assoc($sql);
+		if($query[0] != null || $query[0] != "")
 			{
 echo '<script> window.location.href="enter_password.php"</script>';
 }
@@ -37,6 +38,9 @@ echo '<script> window.location.href="enter_password.php"</script>';
 		}
 		img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
 		display: none;
+		}
+		nav {
+			display: none;
 		}
 		button {
 		display: block;
@@ -110,19 +114,13 @@ echo '<script> window.location.href="enter_password.php"</script>';
 		a:hover {
 			color: orange;
 		}
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: 768px)  {
 			.panel {
 				width: auto;
 				margin: auto;
 			}
 			.panel-heading {
-				background-color: transparent;
-				color: #dcdcdc;
-				font-size: 16px;
-				font-weight: bold;
-				margin-top: 20px;
-				margin-bottom: -10px;
-				letter-spacing: 1px;
+				display: none;
 			}
 			.btn {
 				margin: 10px;
@@ -158,7 +156,7 @@ echo '<script> window.location.href="enter_password.php"</script>';
 			margin-right: 5px;
 			border: 0px solid grey;
 			border-radius: 2px;
-			padding: 6px;
+			padding: 7px;
 			color: #0A4F8C;
 			background-color: #c3c3c3;
 			cursor: pointer;
@@ -188,9 +186,9 @@ echo '<script> window.location.href="enter_password.php"</script>';
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
 					<div class="panel">
-						<!-- <div class="panel-heading">
+						<div class="panel-heading">
 							<span>Login</span>
-						</div> -->
+						</div>
 						<div class="panel-body">
 							<form method="post" action="user_exist.php" >
 								<button class="btn btn1" name="name" value="1"></button>

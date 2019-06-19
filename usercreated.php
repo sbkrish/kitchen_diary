@@ -68,18 +68,19 @@ h4
 
 
 <?php
-//session_start();
 $name=$_SESSION['name'];
-$user=implode($name);
-
+$user_alias=implode($name);
+extract($_POST);
 
 include("./database/db_connection.php");
+$select_user=mysqli_query($con, "SELECT uname FROM user WHERE alias='$user_alias'");
+$user = mysqli_fetch_array($select_user);
 if(isset($_POST['submit']))
 {
 
 $password=mysqli_real_escape_string($con,$_POST["password"]);
 $encrypt=sha1($password);
-$sql=mysqli_query($con, "SELECT password FROM user WHERE uname='$user'");
+$sql=mysqli_query($con, "SELECT password FROM user WHERE alias='$user[0]'");
 		
 		if(mysqli_num_rows($sql)>=1)
 		{
@@ -90,9 +91,11 @@ $sql=mysqli_query($con, "SELECT password FROM user WHERE uname='$user'");
 
 		else
 		{
-			$query="INSERT INTO `user` ( `uname`, `password`) VALUES ('$user', '$encrypt')";
-			$result=mysqli_query($con,$query);
-				if($result)
+			// $query="INSERT INTO `user` ( `uname`, `password`) VALUES ('$user[0]', '$encrypt')";
+			$query = mysqli_query($con, "UPDATE `user` SET `password` = '$encrypt', `email` = '$email', `mobile` = '$mobile' WHERE uname = '$user[0]'");
+			// echo "UPDATE `user` SET `password` = '$encrypt', `email` = '$email', `mobile` = '$mobile' WHERE uname = '$user[0]'";
+			// $result=mysqli_query($con,$query);
+				if($query)
 					{
 						?>	<div class="panel-heading deep-orange lighten-1 white-text" align="center">Welcome</div>
 							<div class="panel-body">

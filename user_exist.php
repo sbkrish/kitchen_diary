@@ -21,9 +21,9 @@ if(!empty($_POST))
 	if(isset($_POST['name']))
 	{
 		
-		$sql=mysqli_query($con, "SELECT uname FROM user WHERE alias='$user'");
-		
-		if(mysqli_num_rows($sql)>=1)
+		$sql=mysqli_query($con, "SELECT password FROM user WHERE alias='$user'");
+		$query = mysqli_fetch_array($sql);
+		if($query[0] != null || $query[0] !="" )
 			{
 				echo '<script> window.location.href="enter_password.php"</script>';
 			}
