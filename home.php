@@ -1,16 +1,15 @@
 <?php
 error_reporting(0);
-include("./database/db_connection.php");
+include "./database/db_connection.php";
 session_start();
-$name=$_SESSION['name'];
-$user=implode($name);
-if(isset($_GET['st']))
-{
-$id=$_GET['st'];
+$name = $_SESSION['name'];
+$user = implode($name);
+if (isset($_GET['st'])) {
+	$id = $_GET['st'];
 // echo "<div id='$id'>Session Timed out</div>";
 }
-$review=mysqli_query($con, "SELECT Incharge FROM `incharge` ORDER BY id DESC LIMIT 1");
-$row=mysqli_fetch_assoc($review);
+$review = mysqli_query($con, "SELECT Incharge FROM `incharge` ORDER BY id DESC LIMIT 1");
+$row = mysqli_fetch_assoc($review);
 ?>
 <!DOCTYPE html>
 <html >
@@ -22,6 +21,7 @@ $row=mysqli_fetch_assoc($review);
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <style type="text/css">
     @font-face {
     font-family: 'Varela Round', sans-serif;
@@ -31,6 +31,10 @@ $row=mysqli_fetch_assoc($review);
     background-color: #7d1a9b;
     background-image: linear-gradient(to right, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 0%, rgba(69, 77, 91, 0.6) 00%);
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    }
+    .panel-body {
+
     }
     img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]
     {
@@ -65,6 +69,7 @@ $row=mysqli_fetch_assoc($review);
     font-weight: bold;
     cursor: pointer;
     border-radius: 30px;
+    outline: 0;
     }
     .btn-5:hover {
     border-radius: 5px;
@@ -111,6 +116,8 @@ $row=mysqli_fetch_assoc($review);
     width: 80%;
     margin-bottom: 20px;
     letter-spacing: 0.3px;
+    outline: 0;
+    font-size: 16px;
     }
     .incharge {
     margin-top: 40px;

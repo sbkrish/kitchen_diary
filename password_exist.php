@@ -6,13 +6,13 @@ session_start();
 <head>
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
 	<title>Enter correct Password</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
  <style type="text/css">
   	body {
-	background-color: #7d1a9b;	
+	background-color: #7d1a9b;
 }
 img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]
 {
@@ -49,7 +49,7 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
 
 <div class="containe">
 
-<div class="pane">  
+<div class="pane">
 	<div class="panel-body">
 
 
@@ -57,22 +57,18 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
 <?php
 //session_start();
 
-$name=$_SESSION['name'];
-$user=implode($name);
+$name = $_SESSION['name'];
+$user = implode($name);
 
-if(isset($_POST['password']))
-{
-	include("./database/db_connection.php");
-	$password=mysqli_real_escape_string($con,$_POST["password"]);
-	$decrypt=sha1($password);
+if (isset($_POST['password'])) {
+	include "./database/db_connection.php";
+	$password = mysqli_real_escape_string($con, $_POST["password"]);
+	$decrypt = sha1($password);
 
-	$query=mysqli_query($con, "SELECT password FROM user WHERE password='$decrypt' AND uname='$user'");
-	if(mysqli_num_rows($query)>=1)
-	{
+	$query = mysqli_query($con, "SELECT password FROM user WHERE password='$decrypt' AND uname='$user'");
+	if (mysqli_num_rows($query) >= 1) {
 		echo '<script> window.location.href="enterpurchase.php"</script>';
-	}
-	else
-	{
+	} else {
 		?>
 		<div class="panel">
 			<div class="text-center">
@@ -83,7 +79,7 @@ if(isset($_POST['password']))
 </div>
 		</div></div></div>
 <?php
-	}
+}
 }
 
 $con->close();
@@ -91,7 +87,7 @@ $con->close();
 
 <div class="text-center">
 <button class="btn btn-info" onclick="location.href='enter_password.php'">Try Again</button><br><br>
-<a class="forget" href='forgetpwd.php'">Forget Password!</a>
+<a class="forget" href='forgetpwd.php'>Forget Password!</a>
 </div>
 </body>
 </html>

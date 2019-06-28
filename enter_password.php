@@ -1,12 +1,11 @@
 <?php
 session_start();
-$name=$_SESSION['name'];
-$user=implode($name);
-if(!($user))
-{
-echo '<script> window.location.href="home.php?st"</script>';
+$name = $_SESSION['name'];
+$user = implode($name);
+if (!($user)) {
+	echo '<script> window.location.href="home.php?st"</script>';
 }
-include('database/db_connection.php');
+include 'database/db_connection.php';
 $verify_user_activation = mysqli_query($con, "SELECT `verified` FROM `user` WHERE `alias` = $user[0]");
 // echo "SELECT verified FROM `user` WHERE `alias` = '$user[0]'";
 $row = mysqli_fetch_assoc($verify_user_activation);
@@ -21,6 +20,7 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 		<link rel="shortcut icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 		<style type="text/css">
 			body {
 			background-color: #7d1a9b;
@@ -29,6 +29,7 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 		width: 100%;
 			height: 100%;
 		overflow: hidden;
+		font-family: 'Montserrat', sans-serif;
 		}
 		nav {
 			display: none;
@@ -44,6 +45,7 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 			opacity: 1;
 			transition: 500ms;
 			margin:auto;
+			display: none;
 
 		}
 		/*.user-image:hover {
@@ -60,9 +62,9 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 		min-width: 300px;
 		padding: 20px 30px 20px 30px;
 		margin: 10% auto;
-		background-color: #ffffff;
-		border-radius: 5px;
-		box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);
+		background-color: transparent;
+		border-radius: 15px;
+		/*box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);*/
 		}
 		.form-group {
 		position:relative;
@@ -72,10 +74,12 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 		position: absolute;
 		left: 0;
 		top: 0px;
-		color: #999;
-		background-color: #fff;
+		color: #ddd;
+		background-color: transparent;
 		z-index: 10;
 		transition: transform 100ms ease-out, font-size 100ms ease-out;
+		font-weight: normal;
+		font-size: 14px;
 		}
 		.focused .form-label {
 		transform: translateY(-125%);
@@ -87,26 +91,37 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 		width: 100%;
 		outline: 0;
 		border: 0;
+		color: #ffffff;
+		font-size: 14px;
 		box-shadow: 0 1px 0 0 #e5e5e5;
 		transition: box-shadow .25s ease-out;
+		background-color: transparent;
 		}
 		.form-input:focus {
-		box-shadow: 0 2px 0 0 blue;
+		box-shadow: 0 1px 0 0;
 		}
 		.form-input.filled {
 		box-shadow: 0 2px 0 0 lightgreen;
 		}
 		.btn {
-			width: 120px;
+			width: 100px;
 			margin: auto;
+			outline: 0;
+				font-size: 12px;
+				margin-left: 15px;
+
+
 
 		}
 		.forgot-password {
 			margin-top: 30px;
+
 		}
 		.forgot-password a {
 			margin-right: 10em;
 			font-size: 12px;
+			color: white;
+			font-weight: normal;
 		}
 		.btm-img {
 			display: none;
@@ -115,10 +130,14 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 			color: #434343;
 			font-size: 16px;
 			line-height: 25px;
+
 		}
 		.fa-envelope {
 			font-size: 36px;
 			color: grey;
+		}
+		#not-activate {
+			margin-top: 20%;
 		}
 		@media only screen and (max-width: 768px){
 			.form-wrapper {
@@ -134,11 +153,11 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 			font-size: 12px;
 		}
 			.btn {
-
 				width: auto;
 				margin: auto;
+				outline: 0;
 			}
-			nav {
+				nav {
 			display: inline;
 			background-color: transparent;
 			margin: auto;
@@ -155,38 +174,42 @@ $row = mysqli_fetch_assoc($verify_user_activation);
 			margin-top: 25px;
 			margin-left: 0px;
 			/*margin-right: 25%;*/
-			font-size: 18px;
+			font-size: 12px;
 			font-weight: normal;
 			display: inline-block;
 
-			
+
 		}
 		nav ul li i {
 			margin-right: 5px;
 			border: 0px solid grey;
-			border-radius: 2px;
-			padding: 5px;
-			color: #0A4F8C;
-			background-color: #c3c3c3;
+			border-radius: 0px;
+			padding: 7px;
+			color: #c3c3c3;
+			/*color: #0A4F8C;*/
+			background-color: transparent;
 			cursor: pointer;
 		}
 		li.another-user {
-			position: absolute;
-			margin-left: 19em;
-			text-align: right;
-			/*background-color: #0af;*/
-			border-radius: 5px;
-			padding: 4px;
-			font-size: 12px;
+			float: right;
+			margin-right: 10%;
+			color: #c3c3c3;
+			font-weight: normal;
+
 		}
+		li a:active .left-arrow  {
+
+			background-color: darkgrey;
+    }
 		.another-user a {
 			color: #c3c3c3;
 			text-decoration: underline;
 			cursor: pointer;
 		}
-		li a:active .fa  {
-			color: maroon;
-			background-color: grey;
+		li a:active .left-arrow  {
+			filter: contrast(160%);
+			background-color: transparent;
+
     }
     	.btm-img {
     		display: inline-block;
@@ -194,9 +217,9 @@ $row = mysqli_fetch_assoc($verify_user_activation);
     		margin: auto;
     		position: absolute;
     		margin-top: 10%;
-    		opacity: 0.5;
+    		opacity: 0.7;
     		background-color: transparent;
-    		
+
     	}
     	.btm-img img {
     		width: 100%;
@@ -211,51 +234,55 @@ $row = mysqli_fetch_assoc($verify_user_activation);
   margin-left: -30px;
   margin-top: 15px;
   position: absolute;
-  opacity: 0.6;
+  opacity: 1;
+  color: lightgrey;
+  font-size: 18px;
   z-index: 2;
 }
-		
+
 
 		</style>
 	</head>
 	<body>
 		<nav>
 			<ul>
-				<li><a href="home.php"><i class="fa fa-arrow-left"></i></a></li>
+				<!-- <li><a href="home.php"><i class="fa fa-arrow-left"></i></a></li> -->
+				<li><a href="home.php"><img src="img/left-arrow_24.png" class="left-arrow" ></a></li>
 				<li class="another-user"><a href="login.php">Not me</a></li>
 			</ul>
 		</nav>
 
-		<input type="hidden" id="current-user" value="<?php echo($user) ?>">
+		<input type="hidden" id="current-user" value="<?php echo ($user); ?>">
 		<div class="form-wrapper">
 			<div class="text-center">
-				<?php if($row['verified'] == 1) { ?>
+				<?php if ($row['verified'] === 1) {?>
 			<img src="img/1.png" class="user-image" id="1">
 			<img src="img/2.png" class="user-image" id="2">
 			<img src="img/3.png" class="user-image" id="3">
-			<img src="img/4.png" class="user-image" id="4">
+			<!-- <img src="img/4.png" class="user-image" id="4"> -->
 			<img src="img/5.png" class="user-image" id="5">
 		</div>
-		
+
 			<form action="password_exist.php" class="form">
 				<div class="form-group">
 					<label class="form-label" for="first">Enter Password</label>
 					<input id="first" class="form-input" type="password"  required="" /><span toggle="#first" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 					<label class="forgot-password"><a  href="forgot-password.php" style="text-decoration: none;">Forgot password?</a></label>
 					<!-- <div class="btn-align"> -->
-					<button class="btn btn-md btn-success">SIGN IN</button>
+					<button class="btn btn-md btn-success" style="outline: 0">SIGN IN</button>
 				<!-- </div> -->
 					<!--   <label><a  href="home.php" style="text-decoration: none;">Home</a></label> -->
-					
-				
-			
+</div>
+
+
 		</form>
-		</div> <?php } else { 
-			echo "<p class='not-activate'> Your account is not yet verified. Please check your registered email for activation link. <p><i class='fa fa-envelope'></i></p>";} ?>
-		</div>
-		<div class="btm-img">
+		</div> <?php } else {
+	echo "<div class='panel panel-body' id='not-activate'>
+	<p class='not-activate'> Your account is not yet verified. Please check your registered email for activation link. <p><i class='fa fa-envelope'></i></p></div>";}?>
+
+		<!-- <div class="btm-img">
 			<img src="img/bg-img/2.png" id="btm-img">
-		</div>
+		</div> -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script>
 	$('input').focus(function(){
@@ -271,10 +298,10 @@ $(this).addClass('filled');
 }
 });
 
-$("img").hide();
+// $("img").hide();
 var value = document.getElementById("current-user").value;
 document.getElementById(value).style.display = "inline";
-document.getElementById("btm-img").style.display = "inline";
+// document.getElementById("btm-img").style.display = "inline";
 
 $("input").focusin(function(){
 	$(".field-icon").show();
@@ -299,3 +326,4 @@ $(".toggle-password").click(function() {
 </script>
 </body>
 </html>
+
